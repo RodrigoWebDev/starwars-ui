@@ -1,0 +1,28 @@
+.char{
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    background: #e3e3e3;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.char-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.char img {
+    width: 42px;
+    margin-right: 20px;
+}
+
+.char span {
+    margin-right: 18px;
+}
+
+@media(min-width: 900px){
+    .char img{
+        width: 100px;
+    }
+}

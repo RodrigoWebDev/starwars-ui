@@ -55,6 +55,7 @@ a:hover{
     margin: 0 auto;
     display: block;
     filter: invert(1);
+    max-width: 290px;
 }
 
 .btn {

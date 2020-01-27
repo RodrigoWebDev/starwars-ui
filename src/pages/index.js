@@ -1,18 +1,16 @@
 //Libs
 import React, { Component } from "react"
 import axios from "axios"
-import api from "../services/api"
 
 //Components
 
 import Pagination from "../components/Pagination"
 import Char from "../components/Char"
+import Loader from "../components/Loader"
 
 //Images
 import logo from "../images/Starwars.png"
-import user from "../images/user-icon.png"
 
-//https://swapi.co/api/people/
 
 class IndexPage extends Component {
   constructor(props) {
@@ -20,13 +18,17 @@ class IndexPage extends Component {
     this.state = {
       info: [],
       nextPage: null,
-      prevPage: null
+      prevPage: null,
+      isFetching: false
     }
   }
 
   componentDidMount() {
     axios.get("https://swapi.co/api/people/")
       .then(data => {
+        this.setState({
+          isFetching: true
+        })
         let _data = data.data.results;
 
         this.setState({
@@ -57,8 +59,10 @@ class IndexPage extends Component {
       .catch(error => {
         console.log(error);
       })
-      .then(() => {
-      });
+
+      this.setState({
+        isFetching: false
+      })
   }
 
   handlePagination = (url) => {
@@ -67,6 +71,10 @@ class IndexPage extends Component {
       console.log("handlePagination");
       axios.get(url)
         .then(data => {
+          this.setState({
+            isFetching: true
+          })
+
           let _data = data.data.results
           let _next = data.data.next
           let _prev = data.data.previous
@@ -85,8 +93,10 @@ class IndexPage extends Component {
         .catch(error => {
           console.error(error);
         })
-        .then(() => {
-        });
+
+        this.setState({
+          isFetching: false
+        })
     }
   }
 
@@ -94,22 +104,28 @@ class IndexPage extends Component {
 
     const nextPage = this.state.nextPage
     const prevPage = this.state.prevPage
+    const isFetching = this.state.isFetching
 
     return (
       <>
+
+
         <div className="container">
           <img className="logo" src={logo} />
           <h2 className="subtitle">Characters</h2>
-          <ul>
-            {
-              this.state.info.map(i => (
-                <li key={i.name}>
-                  <Char info={i} />
-                </li>
-              ))
-            }
+          {!isFetching && <Loader />}
+          {isFetching &&
+            <ul>
+              {
+                this.state.info.map(i => (
+                  <li key={i.name}>
+                    <Char info={i} />
+                  </li>
+                ))
+              }
 
-          </ul>
+            </ul>
+          }
 
           <Pagination
             handleNextPage={this.handlePagination(nextPage)}

@@ -75,7 +75,6 @@ class IndexPage extends Component {
             <>
                 <div className="container">
                     <img className="logo" src={logo}/>
-                    <h2 className="subtitle">Characters</h2>
                     {isFetching && <Loader/>}
                     {!isFetching &&
                     <ul>

@@ -1,15 +1,17 @@
 //Libs
-import React, {Component} from "react"
+import React, { Component } from "react"
 import axios from "axios"
 import Pagination from "../components/Pagination"
 import Char from "../components/Char"
 import Loader from "../components/Loader"
+import Helmet from 'react-helmet'
+
 //Images
 import logo from "../images/Starwars.png"
 
 class IndexPage extends Component {
 
-    setLoader = (action) => this.setState({isFetching: action});
+    setLoader = (action) => this.setState({ isFetching: action });
 
     constructor(props) {
         super(props);
@@ -73,19 +75,22 @@ class IndexPage extends Component {
 
         return (
             <>
+                <Helmet>
+                    <title>Star Wars App</title>
+                </Helmet>
                 <div className="container">
-                    <img className="logo" src={logo}/>
-                    {isFetching && <Loader/>}
+                    <img className="logo" src={logo} />
+                    {isFetching && <Loader />}
                     {!isFetching &&
-                    <ul>
-                        {
-                            this.state.info.map(i => (
-                                <li key={i.name}>
-                                    <Char info={i}/>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                        <ul>
+                            {
+                                this.state.info.map(i => (
+                                    <li key={i.name}>
+                                        <Char info={i} />
+                                    </li>
+                                ))
+                            }
+                        </ul>
                     }
                     <Pagination
                         handleNextPage={this.handlePagination(nextPage)}

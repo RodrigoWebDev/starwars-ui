@@ -57,10 +57,11 @@ class Char extends Component {
                 <img src={user} />
                 <div>
                     <h2 className="char-name">{info.name}</h2>
-                    <span className="char-birth">{info.birth_year}</span>
-                    <span className="char-gender">{info.birth_year}</span>
-                    <span className="char-birth">{info.gender}</span>
-                    <span className="char-species"></span>
+                    <div className="char-info">
+                        <span className="char-birth"><strong>Birth Year:</strong> <br />{info.birth_year}</span>
+                        <span className="char-gender"><strong>Gender:</strong><br />{info.gender}</span>
+                    </div>
+
                     <div className="char-starships">
                         {info.starships.length > 0 &&
                             <button className="btn" onClick={this.seeMore(info.starships)}>

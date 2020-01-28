@@ -22,6 +22,14 @@
     margin-right: 18px;
 }
 
+.char > div {
+    flex-grow: 1;
+}
+
+.char-info {
+    display: flex;
+}
+
 .swal2-image {
     width: 70px;
 }

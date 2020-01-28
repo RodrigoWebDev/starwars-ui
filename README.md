@@ -1,6 +1,6 @@
-# Star Wars APP
+# Star Wars WEB APP
 
-Live demo here -> 
+Live demo [HERE](https://starwars-ui-app.netlify.com/)
 
 ### Installing
 

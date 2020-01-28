@@ -14,11 +14,22 @@ npm install
 gatsby develop
 ```
 
+or
+
+```
+npm start
+```
+
 ## Build
 
 ```
 gatsby build
 ```
 
+## Production Server
+
+```
+gatsby serve
+```
 
 
